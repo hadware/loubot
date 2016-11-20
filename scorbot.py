@@ -10,7 +10,7 @@ import websockets
 
 from tools.commons import UserList
 from tools.constants import DEFAULT_COOKIE, DEFAULT_CHANNEL
-from tools.processors import MessageDispatcher, WeshBot, MrleBot, PdChecker, \
+from tools.processors import MessageDispatcher, WeshBot, MrleBot, TimeTeller, \
     CommandsDispatcherProcessor, ConnectionDispatcher
 from tools.processors.connections import PuteRandomConnect
 
@@ -83,7 +83,7 @@ parser.add_argument('--cookie', type=str, help='usercookie to use')
 parser.add_argument('--channel', type=str, help='channel to watch')
 
 # setting up the various dispatchers
-cmd_dispatcher_proc = CommandsDispatcherProcessor([PdChecker()])
+cmd_dispatcher_proc = CommandsDispatcherProcessor([TimeTeller()])
 
 root_messages_dispatcher = MessageDispatcher([cmd_dispatcher_proc, WeshBot(), MrleBot()])
 

@@ -1,4 +1,5 @@
 import random
+from datetime import datetime
 
 from .commons import *
 
@@ -53,7 +54,10 @@ class CommandsDispatcherProcessor(DispatcherBotProcessor):
         return "Commande non reconnue, pd" if response is None else response
 
 
-class PdChecker(MessageProcessor):
+class TimeTeller(MessageProcessor):
 
     def match(self, text : str, sender_id : str, users_list : UserList):
         return "quelle heure" in text.lower()
+
+    def process(self, text : str, sender_id : str, users_list : UserList):
+        return "Il est %s" % datetime.now().strftime("%I:%M%p")
